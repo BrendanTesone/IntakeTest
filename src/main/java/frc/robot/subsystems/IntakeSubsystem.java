@@ -5,6 +5,7 @@ import frc.lib.AftershockSubsystem;
 import frc.robot.Constants.PortConstants;
 import com.revrobotics.CANSparkMax;
 public class IntakeSubsystem extends AftershockSubsystem {
+    //jnsefk
     //@author
     //TODO: test motor with this code, add "brushless" motor type to sparkmax object
     //TODO: add constants for motor speed for all 4 situations
