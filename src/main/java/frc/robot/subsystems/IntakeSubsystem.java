@@ -1,9 +1,15 @@
 package frc.robot.subsystems;
 
 import frc.lib.AftershockSubsystem;
-
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.PortConstants;
 import com.revrobotics.CANSparkMax;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.Constants.ControllerConstants;
+import frc.robot.commands.IntakeCommand;
 public class IntakeSubsystem extends AftershockSubsystem {
     //jnsefk
     //@author
@@ -14,30 +20,51 @@ public class IntakeSubsystem extends AftershockSubsystem {
     public IntakeSubsystem(){
         super();
     }
+    private XboxController primaryController = new XboxController(ControllerConstants.kPrimaryControllerPort);
+    private IntakeSubsystem Intake = new IntakeSubsystem();
 
+    public void intakePeriodic() {
+        boolean leftBumperPressed = primaryController.getLeftBumper();
+        if(leftBumperPressed){
+            Intake.outputCube();
+        }
+        double leftTriggerAmount = primaryController.getLeftTriggerAxis();
+        if(leftTriggerAmount >= .5){
+            Intake.outputCone();
+        }
+        boolean rightBumperPressed = primaryController.getRightBumper();
+        if(rightBumperPressed){
+            Intake.intakeCube();
+        }
+        double rightTriggerAmount = primaryController.getRightTriggerAxis();
+        if(rightTriggerAmount >= .5){
+            Intake.outputCone();
+        }
+    }
     //Turn on the motor to input the cone
     //Button right trigger
     //clockwise to output
     public void intakeCone(){
         spark.set(-0.75);
+        
     }
     //Turn on the motor to output the cone
     //Button left trigger
     //counterclockwise to intake
     public void outputCone(){
-        
+        spark.set(0.75);
     }
     //Turn on the motor to input the cube
     //Button right bumper
     //counterclockwise to input
     public void intakeCube(){
-
+        spark.set(0.75);
     }
     //Turn on the motor to output the cube
     //Button left bumper
     //clockwise to output
     public void outputCube(){
-        
+        spark.set(-0.75);
     }
 
     @Override

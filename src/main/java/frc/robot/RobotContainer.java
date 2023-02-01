@@ -5,7 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.Constants.ControllerConstants;
+// moved import frc.robot.Constants.ControllerConstants; to intakeSubsystem
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -23,41 +23,20 @@ import frc.robot.subsystems.IntakeSubsystem;
  */
 public class RobotContainer {
   
-  private XboxController primaryController = new XboxController(ControllerConstants.kPrimaryControllerPort);
-  private IntakeSubsystem Intake = new IntakeSubsystem();
   //put in robot periodic
-  
-  
+
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  private final CommandXboxController m_driverController =new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
   }
-  public void intakePeriodic() {
-    boolean leftBumperPressed = primaryController.getLeftBumper();
-    if(leftBumperPressed){
-        Intake.outputCube();
-    }
-    Double leftTriggerAmount = primaryController.getLeftTriggerAxis();
-    if(leftTriggerAmount >= .5){
-        Intake.outputCone();
-    }
-    boolean rightBumperPressed = primaryController.getRightBumper();
-    if(rightBumperPressed){
-        Intake.intakeCube();
-    }
-    Double rightTriggerAmount = primaryController.getRightTriggerAxis();
-    if(rightTriggerAmount >= .5){
-        Intake.outputCone();
-    }
-  }
+  
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
    * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
