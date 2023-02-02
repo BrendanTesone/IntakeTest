@@ -2,7 +2,9 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -12,7 +14,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeCommand extends CommandBase {
   
   private IntakeSubsystem m_intake = new IntakeSubsystem();
-  private Spark spark = new Spark(3);  
+   
   /**
    * Creates a new ExampleCommand.
    *
@@ -32,7 +34,7 @@ public class IntakeCommand extends CommandBase {
   //@Override
   public void execute(double speed) {
     //double speed = this.speed;
-    spark.set(speed);
+    m_intake.setSpeed(speed);
   }
 
   // Called once the command ends or is interrupted.
