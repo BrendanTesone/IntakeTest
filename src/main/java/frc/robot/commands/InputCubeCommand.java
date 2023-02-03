@@ -8,22 +8,23 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.IntakeSubsystem;
 
 /** An example command that uses an example subsystem. */
-public class IntakeCommand extends CommandBase {
+public class IntakeCubeCommand extends InstantCommand {
   
-  private IntakeSubsystem m_intake = new IntakeSubsystem();
-   
+  private IntakeSubsystem mIntake;
+    
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public IntakeCommand(IntakeSubsystem intake) {
-     m_intake = intake;
+  public  IntakeCubeCommand(IntakeSubsystem Intake) {
+    mIntake = Intake;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_intake);
+    addRequirements(mIntake);
   }
 
   // Called when the command is initially scheduled.
@@ -32,18 +33,8 @@ public class IntakeCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   //@Override
-  public void execute(double speed) {
+  public void execute() {
     //double speed = this.speed;
-    m_intake.setSpeed(speed);
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
+    mIntake.intakeCube();
   }
 }

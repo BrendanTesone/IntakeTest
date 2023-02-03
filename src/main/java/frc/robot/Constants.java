@@ -23,4 +23,11 @@ public final class Constants {
   public static class ControllerConstants{
     public static final int kPrimaryControllerPort = 0;
   }
+  public static class IntakeConstants{
+    public static final double intakeConeSpeed = -0.75;
+    public static final double intakeCubeSpeed = 0.75;
+    public static final double outputConeSpeed = 0.75;
+    public static final double outputCubeSpeed = -0.75;
+    
+  }
 }
