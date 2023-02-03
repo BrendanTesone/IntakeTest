@@ -8,7 +8,6 @@ import frc.robot.Constants.OperatorConstants;
 // moved import frc.robot.Constants.ControllerConstants; to intakeSubsystem
 //import frc.robot.commands.Autos;
 //import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
@@ -17,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import 
+import frc.robot.commands.*;
 
 import frc.robot.subsystems.IntakeSubsystem;
 /**
@@ -71,7 +70,7 @@ public class RobotContainer {
     bInputCube.onTrue(new InputCubeCommand(mIntakeSubsystem)).whileFalse(StopIntakeCommand);
     bInputCone.onTrue(new InputConeCommand(mIntakeSubsystem)).whileFalse(StopIntakeCommand);
     bOutputCube.onTrue(new OutputConeCommand(mIntakeSubsystem)).whileFalse(StopIntakeCommand);
-    bOutputCone.onTrue(new IntakeCubeCommand(mIntakeSubsystem)).whileFalse(StopIntakeCommand);
+    bOutputCone.onTrue(new OutputCubeCommand(mIntakeSubsystem)).whileFalse(StopIntakeCommand);
     
 
     
