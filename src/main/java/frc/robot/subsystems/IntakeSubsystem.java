@@ -10,16 +10,17 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.Constants.IntakeConstants;
 public class IntakeSubsystem extends AftershockSubsystem {
+
     //TODO: test motor with this code, add "brushless" motor type to sparkmax object
     //TODO: add constants for motor speed for all 4 situations
-  
-   private CANSparkMax spark = new CANSparkMax(3, MotorType.kBrushless); 
+    
+    private CANSparkMax sparkMotorController = new CANSparkMax(3, MotorType.kBrushless); 
     public IntakeSubsystem(){
         super();
     }
 
     public void intakePeriodic() {
-       /**  boolean leftBumperPressed = primaryController.getLeftBumper();
+        /**  boolean leftBumperPressed = primaryController.getLeftBumper();
         boolean rightBumperPressed = primaryController.getRightBumper();
         //double rightTriggerAmount = primaryController.getRightTriggerAxis();
         //double leftTriggerAmount = primaryController.getLeftTriggerAxis();
@@ -50,35 +51,48 @@ public class IntakeSubsystem extends AftershockSubsystem {
     //Turn on the motor to input the cone
     //Button right trigger
     //clockwise to output
+
+    /**
+     * 
+     * This sets the motor speed
+     * 
+     */
     public void setSpeed(double speed){
-        spark.set(speed);
+        sparkMotorController.set(speed);
         System.out.println(speed);
     }
     public void intakeCone(){
-        spark.set(IntakeConstants.intakeConeSpeed);
+        sparkMotorController.set(IntakeConstants.intakeConeSpeed);
         
     }
     //Turn on the motor to output the cone
     //Button left trigger
     //counterclockwise to intake
     public void outputCone(){ 
-        spark.set(IntakeConstants.outputConeSpeed);
+        sparkMotorController.set(IntakeConstants.outputConeSpeed);
     }
     //Turn on the motor to input the cube
     //Button right bumper
     //counterclockwise to input
     public void intakeCube(){
-        spark.set(IntakeConstants.intakeCubeSpeed);
+        sparkMotorController.set(IntakeConstants.intakeCubeSpeed);
     }
     //Turn on the motor to output the cube
     //Button left bumper
     //clockwise to output
+
+
+    /**
+     * 
+     * 
+     * 
+     */
     public void outputCube(){
-        spark.set(IntakeConstants.outputCubeSpeed);
+        sparkMotorController.set(IntakeConstants.outputCubeSpeed);
     }
 
-    public void stopIntake() {
-        spark.set(0);
+    public void stopIntakeMotor() {
+        sparkMotorController.set(0);
     }
 
     @Override
@@ -96,7 +110,4 @@ public class IntakeSubsystem extends AftershockSubsystem {
 //right trigger, left trigger - cones
 //right bumper left bumper - cubes
 //right for consume, left for expel
-
-    
-
 }

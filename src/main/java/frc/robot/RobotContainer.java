@@ -4,11 +4,11 @@
 
 package frc.robot;
 
+import frc.lib.AftershockXboxController;
 import frc.robot.Constants.OperatorConstants;
 // moved import frc.robot.Constants.ControllerConstants; to intakeSubsystem
 //import frc.robot.commands.Autos;
 //import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.XboxController.Axis;
@@ -35,13 +35,13 @@ public class RobotContainer {
   final IntakeSubsystem mIntakeSubsystem = new IntakeSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  public final XboxController m_driverController =new XboxController(OperatorConstants.kDriverControllerPort);
+  public final AftershockXboxController m_driverController = new AftershockXboxController(OperatorConstants.kDriverControllerPort);
 
 
-  private JoystickButton bInputCube = new JoystickButton(m_driverController, Button.kRightBumper.value);
-  private JoystickButton bOutputCube = new JoystickButton(m_driverController, Button.kLeftBumper.value);
-  private JoystickButton bInputCone = new JoystickButton(m_driverController, Axis.kLeftTrigger.value);
-  private JoystickButton bOutputCone = new JoystickButton(m_driverController, Axis.kRightTrigger.value);
+  private JoystickButton bInputCube = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
+  private JoystickButton bOutputCube = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
+  private JoystickButton bInputCone = new JoystickButton(m_driverController, XboxController.Axis.kLeftTrigger.value);
+  private JoystickButton bOutputCone = new JoystickButton(m_driverController, XboxController.Axis.kRightTrigger.value);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -67,10 +67,11 @@ public class RobotContainer {
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    bInputCube.onTrue(new InputCubeCommand(mIntakeSubsystem)).whileFalse(StopIntakeCommand);
-    bInputCone.onTrue(new InputConeCommand(mIntakeSubsystem)).whileFalse(StopIntakeCommand);
-    bOutputCube.onTrue(new OutputConeCommand(mIntakeSubsystem)).whileFalse(StopIntakeCommand);
-    bOutputCone.onTrue(new OutputCubeCommand(mIntakeSubsystem)).whileFalse(StopIntakeCommand);
+    bInputCube.onTrue(new InputCubeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+    
+    bInputCone.onTrue(new InputConeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+    bOutputCube.onTrue(new OutputConeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+    bOutputCone.onTrue(new OutputCubeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
     
 
     
@@ -87,3 +88,4 @@ public class RobotContainer {
   }
 }
 */
+}

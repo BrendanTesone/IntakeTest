@@ -14,8 +14,8 @@ import frc.robot.subsystems.IntakeSubsystem;
 /** An example command that uses an example subsystem. */
 public class InputConeCommand extends InstantCommand {
   
-  private IntakeSubsystem mInput = new IntakeSubsystem();
-   
+  private IntakeSubsystem mInput;
+    
     
   /**
    * Creates a new ExampleCommand.
@@ -30,7 +30,9 @@ public class InputConeCommand extends InstantCommand {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    System.out.println("input cone command starting");
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   //@Override
