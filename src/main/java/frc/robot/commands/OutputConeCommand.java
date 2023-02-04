@@ -37,6 +37,7 @@ public class OutputConeCommand extends InstantCommand {
   //@Override
   public void execute() {
     //double speed = this.speed;
+    System.out.println("executing");
     mOutput.outputCone();
   }
 }

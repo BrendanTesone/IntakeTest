@@ -31,6 +31,7 @@ public class StopIntakeCommand extends InstantCommand {
   @Override
   public void initialize() {
     System.out.println("command stopping");
+    System.out.println();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

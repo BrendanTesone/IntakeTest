@@ -11,6 +11,7 @@ import frc.robot.Constants.OperatorConstants;
 //import frc.robot.commands.ExampleCommand;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -35,18 +36,20 @@ public class RobotContainer {
   final IntakeSubsystem mIntakeSubsystem = new IntakeSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  public final AftershockXboxController m_driverController = new AftershockXboxController(OperatorConstants.kDriverControllerPort);
+  public final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
 
-  private JoystickButton bInputCube = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
+  /**private JoystickButton bInputCube = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
   private JoystickButton bOutputCube = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
+
   private JoystickButton bInputCone = new JoystickButton(m_driverController, XboxController.Axis.kLeftTrigger.value);
-  private JoystickButton bOutputCone = new JoystickButton(m_driverController, XboxController.Axis.kRightTrigger.value);
+  private JoystickButton bOutputCone = new JoystickButton(m_driverController, XboxController.Axis.kRightTrigger.value);**/
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    
   }
   
   /**
@@ -67,11 +70,15 @@ public class RobotContainer {
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    bInputCube.onTrue(new InputCubeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
-    
-    bInputCone.onTrue(new InputConeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
-    bOutputCube.onTrue(new OutputConeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
-    bOutputCone.onTrue(new OutputCubeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+    m_driverController.rightBumper().onTrue(new InputCubeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+    m_driverController.leftBumper().onTrue(new OutputCubeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+
+    m_driverController.rightTrigger().onTrue(new InputConeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+    m_driverController.leftTrigger().onTrue(new OutputConeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+
+
+
+   // SmartDashboard.putNumber("cone intake", XboxController.Button.kRightBumper.value);
     
 
     

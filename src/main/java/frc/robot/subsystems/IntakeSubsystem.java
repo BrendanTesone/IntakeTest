@@ -63,6 +63,8 @@ public class IntakeSubsystem extends AftershockSubsystem {
     }
     public void intakeCone(){
         sparkMotorController.set(IntakeConstants.intakeConeSpeed);
+        System.out.println("Intaking cone: " + IntakeConstants.intakeConeSpeed);
+        
         
     }
     //Turn on the motor to output the cone
@@ -70,25 +72,21 @@ public class IntakeSubsystem extends AftershockSubsystem {
     //counterclockwise to intake
     public void outputCone(){ 
         sparkMotorController.set(IntakeConstants.outputConeSpeed);
+        System.out.println("outputting cone: " + IntakeConstants.outputConeSpeed);
     }
     //Turn on the motor to input the cube
     //Button right bumper
     //counterclockwise to input
     public void intakeCube(){
         sparkMotorController.set(IntakeConstants.intakeCubeSpeed);
+        System.out.println("Intaking cube" + IntakeConstants.intakeCubeSpeed);
     }
     //Turn on the motor to output the cube
     //Button left bumper
     //clockwise to output
-
-
-    /**
-     * 
-     * 
-     * 
-     */
     public void outputCube(){
         sparkMotorController.set(IntakeConstants.outputCubeSpeed);
+        System.out.println("outputting cube" + + IntakeConstants.outputCubeSpeed);
     }
 
     public void stopIntakeMotor() {

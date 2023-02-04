@@ -26,6 +26,7 @@ public class InputConeCommand extends InstantCommand {
     mInput = input;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(mInput);
+    System.out.println("input CONE command");
   }
 
   // Called when the command is initially scheduled.
@@ -38,6 +39,7 @@ public class InputConeCommand extends InstantCommand {
   //@Override
   public void execute() {
     //double speed = this.speed;
+    System.out.println("executing");
     mInput.intakeCone();
   }
 }

@@ -38,5 +38,6 @@ public class InputCubeCommand extends InstantCommand {
   public void execute() {
     //double speed = this.speed;
     mIntake.intakeCube();
+    //mIntake.setSpeed(.75);
   }
 }
