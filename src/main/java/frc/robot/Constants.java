@@ -24,10 +24,15 @@ public final class Constants {
     public static final int kPrimaryControllerPort = 0;
   }
   public static class IntakeConstants{
-    public static final double intakeConeSpeed = -0.75;
+    /**public static final double intakeConeSpeed = -0.75;
     public static final double intakeCubeSpeed = 0.75;
     public static final double outputConeSpeed = 0.75;
-    public static final double outputCubeSpeed = -0.75;
-    
+    public static final double outputCubeSpeed = -0.75;**/
+
+    public static final double kIntakeConeSpeed = 0.75;
+    public static final double kIntakeCubeSpeed = 0.75;
+  }
+  public static class MotorConstants{
+    public static final int kCANSparkMaxID = 3; 
   }
 }

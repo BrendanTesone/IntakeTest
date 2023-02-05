@@ -70,11 +70,11 @@ public class RobotContainer {
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    m_driverController.rightBumper().onTrue(new InputCubeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
-    m_driverController.leftBumper().onTrue(new OutputCubeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+    m_driverController.rightBumper().onTrue(new InputCubeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
+    m_driverController.leftBumper().onTrue(new OutputCubeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
 
-    m_driverController.rightTrigger().onTrue(new InputConeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
-    m_driverController.leftTrigger().onTrue(new OutputConeCommand(mIntakeSubsystem)).whileFalse(new StopIntakeCommand(mIntakeSubsystem));
+    m_driverController.rightTrigger().onTrue(new InputConeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
+    m_driverController.leftTrigger().onTrue(new OutputConeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
 
 
 

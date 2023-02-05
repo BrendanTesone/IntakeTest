@@ -13,7 +13,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 /** An example command that uses an example subsystem. */
 public class IntakeCommand extends CommandBase {
   
-  private IntakeSubsystem m_intake;
+  private IntakeSubsystem mIntakeSubsystem;
     
   /**
    * Creates a new ExampleCommand.
@@ -21,22 +21,20 @@ public class IntakeCommand extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
   public IntakeCommand(IntakeSubsystem intake) {
-    m_intake = intake;
+    mIntakeSubsystem = intake;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_intake);
+    addRequirements(mIntakeSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("input cube command starting");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   //@Override
   public void execute(double speed) {
     //double speed = this.speed;
-    m_intake.setSpeed(speed);
   }
 
   // Called once the command ends or is interrupted.

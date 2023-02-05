@@ -14,30 +14,28 @@ import frc.robot.subsystems.IntakeSubsystem;
 /** An example command that uses an example subsystem. */
 public class StopIntakeCommand extends InstantCommand {
   
-  private IntakeSubsystem mStop;
+  private IntakeSubsystem mIntakeSubsystem;
   
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public StopIntakeCommand(IntakeSubsystem stop) {
-    mStop = stop;
+  public StopIntakeCommand(IntakeSubsystem intakeSubsystem) {
+    mIntakeSubsystem = intakeSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(mStop);
+    addRequirements(mIntakeSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("command stopping");
-    System.out.println();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   //@Override
   public void execute() {
     //double speed = this.speed;
-    mStop.stopIntakeMotor();
+    mIntakeSubsystem.stopIntakeMotor();
   }
 }

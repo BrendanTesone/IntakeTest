@@ -14,30 +14,27 @@ import frc.robot.subsystems.IntakeSubsystem;
 /** An example command that uses an example subsystem. */
 public class OutputConeCommand extends InstantCommand {
   
-  private IntakeSubsystem mOutput;
+  private IntakeSubsystem mIntakeSubsystem;
     
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public OutputConeCommand(IntakeSubsystem output) {
-    mOutput = output;
+  public OutputConeCommand(IntakeSubsystem intakeSubsystem) {
+    mIntakeSubsystem = intakeSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(mOutput);
+    addRequirements(mIntakeSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("output cone command starting ");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   //@Override
   public void execute() {
-    //double speed = this.speed;
-    System.out.println("executing");
-    mOutput.outputCone();
+    mIntakeSubsystem.outputCone();
   }
 }
