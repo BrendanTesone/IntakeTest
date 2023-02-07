@@ -70,18 +70,14 @@ public class RobotContainer {
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-    m_driverController.rightBumper().onTrue(new InputCubeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
+    m_driverController.rightBumper().onTrue(new IngestCubeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
     m_driverController.leftBumper().onTrue(new OutputCubeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
-
-    m_driverController.rightTrigger().onTrue(new InputConeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
+    m_driverController.rightTrigger().onTrue(new IngestConeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
     m_driverController.leftTrigger().onTrue(new OutputConeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
 
 
 
-   // SmartDashboard.putNumber("cone intake", XboxController.Button.kRightBumper.value);
-    
-
-    
+   // SmartDashboard.putNumber("cone intake", XboxController.Button.kRightBumper.value);    
   }
 
   /**
@@ -89,7 +85,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
- /* public Command getAutonomousCommand() {
+  /* public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     return Autos.exampleAuto(m_exampleSubsystem);
   }
