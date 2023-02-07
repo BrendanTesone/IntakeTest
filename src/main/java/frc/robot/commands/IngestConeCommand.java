@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.IntakeSubsystem;
 
 /** An example command that uses an example subsystem. */
-public class InputConeCommand extends InstantCommand {
+public class IngestConeCommand extends InstantCommand {
   
   private IntakeSubsystem mIntakeSubsystem;
     
@@ -22,7 +22,7 @@ public class InputConeCommand extends InstantCommand {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public InputConeCommand(IntakeSubsystem intakeSubsystem) {
+  public IngestConeCommand(IntakeSubsystem intakeSubsystem) {
     mIntakeSubsystem = intakeSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(mIntakeSubsystem);
@@ -36,6 +36,6 @@ public class InputConeCommand extends InstantCommand {
   // Called every time the scheduler runs while the command is scheduled.
   //@Override
   public void execute() {
-    mIntakeSubsystem.intakeCone();
+    mIntakeSubsystem.ingestCone();
   }
 }

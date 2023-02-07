@@ -29,8 +29,8 @@ public final class Constants {
     public static final double outputConeSpeed = 0.75;
     public static final double outputCubeSpeed = -0.75;**/
 
-    public static final double kIntakeConeSpeed = 0.75;
-    public static final double kIntakeCubeSpeed = 0.75;
+    public static final double kIngestConeSpeed = 0.2;
+    public static final double kIngestCubeSpeed = 0.2;
   }
   public static class MotorConstants{
     public static final int kCANSparkMaxID = 3; 
