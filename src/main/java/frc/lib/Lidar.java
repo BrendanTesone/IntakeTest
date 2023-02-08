@@ -12,10 +12,10 @@ public class Lidar {
     
     /**
      * Creates a LIDAR Lite v3 Object
-     * @param port DigitalInput Object
+     * @param klidarport DigitalInput Object
      */
-    public Lidar(DigitalSource port) {
-        mCounter = new Counter(port);
+    public Lidar(int klidarport) {
+        mCounter = new Counter(klidarport);
         mCounter.setMaxPeriod(1.0);
         mCounter.setSemiPeriodMode(true);
         mCounter.reset();

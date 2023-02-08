@@ -17,11 +17,13 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
   public static class PortConstants{
-    public static int kSparkMaxPort = 0;
+    public static final int kSparkMaxPort = 0;
+    public static final int kLidarPort = 0;
 
   }
   public static class ControllerConstants{
     public static final int kPrimaryControllerPort = 0;
+  
   }
   public static class IntakeConstants{
     /**public static final double intakeConeSpeed = -0.75;
@@ -35,4 +37,7 @@ public final class Constants {
   public static class MotorConstants{
     public static final int kCANSparkMaxID = 3; 
   }
-}
+  public static class PIDvalues{
+    public static final double[] kPIDvalue = {0, 0, 0};
+  }
+  }
