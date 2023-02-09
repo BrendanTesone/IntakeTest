@@ -15,6 +15,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class OutputCubeCommand extends InstantCommand {
   
   private IntakeSubsystem mIntakeSubsystem;
+  
     
   /**
    * Creates a new ExampleCommand.

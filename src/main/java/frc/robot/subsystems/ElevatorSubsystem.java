@@ -3,32 +3,47 @@ import frc.lib.AftershockSubsystem;
 import frc.lib.Lidar;
 import frc.lib.PID;
 import frc.robot.Constants.PortConstants;
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.PIDvalues;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.XboxController;
+
+
 public class ElevatorSubsystem extends AftershockSubsystem {
     
-    private Lidar m_lidar = new Lidar(PortConstants.kLidarPort);   
+    private Lidar m_lidar = new Lidar(ControllerConstants.kPrimaryControllerPort);   
     private PID mPID = new PID();
-    double elevatorDistance; 
-    XboxController m_roboController = new XboxController(0);
-    boolean xButton = m_roboController.getXButton();
-    boolean aButton = m_roboController.getAButton();
-    boolean bButton = m_roboController.getBButton();
-    
-    public enum States 
-    {
-        eLOW(0), eMID(45), eHIGH(90);
+    private double elevatorDistance;     
+    private CANSparkMax mMotor;
 
-        private final int currentLidarDistance;
+    private double setpoint;
 
-        private States(int distance) {
-            currentLidarDistance = distance;
+    public static enum States {
+
+
+        eLOW(0.0), eMID(45.0), eHIGH(90.0),/*addd */ ;
+
+
+        double mDistance;
+
+        private States(double distance) {
+           mDistance = distance;
         }
+        //added
+        public double getDistance()
+        {
+            return mDistance;
+        }
+        //added
     }
 
-    public void ElevatorSubsystem()
-    {
-        
+    public void ElevatorSubsystem() {
+
+        setpoint = 0.0;
+        mMotor = new CANSparkMax(0, MotorType.kBrushless);
     }
     public void ElevatorPeriodic()
     {
@@ -42,12 +57,38 @@ public class ElevatorSubsystem extends AftershockSubsystem {
         //}
     }
     public void initialize() {
+        setpoint = 0.0;
         // TODO Auto-generated method stub
-      mPID.start(PIDvalues.kPIDvalue);
+        //mPID.start(PIDvalues.kPIDvalue);
     }   
     public void outputTelemetry() {
         // TODO Auto-generated method stub
         
+    }
+
+    public void startElevatorPID(double setpoint) {
+
+        this.setpoint = setpoint;
+        mPID.start(PIDvalues.kPIDvalue);
+
+    }
+
+    public void runPID() {
+        double current = m_lidar.getDistanceIn();
+        double speed = mPID.update(current, setpoint);
+        setElevatorSpeed(speed);
+    }
+
+    public boolean isFinished() {
+       return  mPID.getError() < PIDvalues.kElevatorEpsilon;
+    }
+
+    public void end(){
+        mMotor.set(0);
+    }
+
+    public void setElevatorSpeed(double speed){
+        mMotor.set(speed);
     }
     
 }

@@ -5,6 +5,8 @@
 package frc.robot;
 
 import frc.lib.AftershockXboxController;
+import frc.lib.Lidar;
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.OperatorConstants;
 // moved import frc.robot.Constants.ControllerConstants; to intakeSubsystem
 //import frc.robot.commands.Autos;
@@ -36,8 +38,7 @@ public class RobotContainer {
   final IntakeSubsystem mIntakeSubsystem = new IntakeSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  public final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-
+  public final CommandXboxController m_driverController = new CommandXboxController(ControllerConstants.kPrimaryControllerPort);
 
   /**private JoystickButton bInputCube = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
   private JoystickButton bOutputCube = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
@@ -69,14 +70,13 @@ public class RobotContainer {
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     //m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-
-    m_driverController.rightBumper().onTrue(new IngestCubeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
-    m_driverController.leftBumper().onTrue(new OutputCubeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
+       
+    //m_driverController.rightBumper().onTrue(new IngestCubeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
+   // m_driverController.leftBumper().onTrue(new OutputCubeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
     m_driverController.rightTrigger().onTrue(new IngestConeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
-    m_driverController.leftTrigger().onTrue(new OutputConeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
+   // m_driverController.leftTrigger().onTrue(new OutputConeCommand(mIntakeSubsystem)).onFalse(new StopIntakeCommand(mIntakeSubsystem));
 
-
-
+    //m_driverController.button(1).onTrue(new ElevatorCommand()).onFalse(new ElevatorCommand(mElevatorSubsystem));
    // SmartDashboard.putNumber("cone intake", XboxController.Button.kRightBumper.value);    
   }
 

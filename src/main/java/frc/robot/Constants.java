@@ -31,13 +31,17 @@ public final class Constants {
     public static final double outputConeSpeed = 0.75;
     public static final double outputCubeSpeed = -0.75;**/
 
-    public static final double kIngestConeSpeed = 0.2;
-    public static final double kIngestCubeSpeed = 0.2;
+    public static final double kIngestConeSpeed = 0.5;
+    public static final double kIngestCubeSpeed = 0.5;
   }
   public static class MotorConstants{
     public static final int kCANSparkMaxID = 3; 
   }
   public static class PIDvalues{
     public static final double[] kPIDvalue = {0, 0, 0};
+    public static final double kElevatorEpsilon = 0.0;
+  }
+  public static class Lidarportvalues{
+    public static final int y = 0;
   }
   }

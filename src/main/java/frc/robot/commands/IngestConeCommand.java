@@ -1,6 +1,9 @@
 package frc.robot.commands;
 
+import frc.robot.Constants;
 import frc.robot.subsystems.ExampleSubsystem;
+
+import javax.lang.model.util.ElementScanner14;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxPIDController;
@@ -13,7 +16,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 /** An example command that uses an example subsystem. */
 public class IngestConeCommand extends InstantCommand {
-  
+  private double previousEncoderPosition = 0;
   private IntakeSubsystem mIntakeSubsystem;
     
     
@@ -36,6 +39,15 @@ public class IngestConeCommand extends InstantCommand {
   // Called every time the scheduler runs while the command is scheduled.
   //@Override
   public void execute() {
-    mIntakeSubsystem.ingestCone();
+    double currentEncoderValue = mIntakeSubsystem.getEncoderValue();
+    if(Math.abs(currentEncoderValue-previousEncoderPosition) > Constants.kNEO550CountsperREV){
+      //change call to getVelocity in getPosition thinkAabout
+       mIntakeSubsystem.ingestCone();
+    }
+    else
+    {
+      mIntakeSubsystem.stopIntakeMotor();
+    }
+    previousEncoderPosition = currentEncoderValue;
   }
 }

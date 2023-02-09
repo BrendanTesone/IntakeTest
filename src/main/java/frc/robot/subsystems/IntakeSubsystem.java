@@ -33,6 +33,11 @@ public class IntakeSubsystem extends AftershockSubsystem
      * This sets the motor speed
      * 
      */
+    public double getCurrent()
+    {
+        //return sparkMotorController.getOutputCurrent();
+        return sparkMotorController.getBusVoltage();
+    }
     private void setSpeed(double speed){
         sparkMotorController.set(speed);
     }
@@ -44,26 +49,26 @@ public class IntakeSubsystem extends AftershockSubsystem
     //counterclockwise to intake
     public void outputCone(){ 
         setSpeed(IntakeConstants.kIngestConeSpeed);
-        System.out.println(sparkMotorController.get());
+        //System.out.println(sparkMotorController.get());
     }
     //Turn on the motor to input the cube
     //Button right bumper
     //counterclockwise to input
     public void ingestCube(){
         setSpeed(IntakeConstants.kIngestCubeSpeed);
-        System.out.println(sparkMotorController.get());
+        //System.out.println(sparkMotorController.get());
     }
     //Turn on the motor to output the cube
     //Button left bumper
     //clockwise to output
     public void outputCube(){
         setSpeed(-(IntakeConstants.kIngestCubeSpeed));
-        System.out.println(sparkMotorController.get());
+       // System.out.println(sparkMotorController.get());
     }
 
     public void stopIntakeMotor() {
         sparkMotorController.set(0);
-        System.out.println(sparkMotorController.get());
+       // System.out.println(sparkMotorController.get());
     }
 
     @Override

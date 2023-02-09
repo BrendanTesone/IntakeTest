@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.lib.Lidar;
 import frc.robot.subsystems.ExampleSubsystem;
 
 import com.revrobotics.CANSparkMax;
@@ -13,7 +14,8 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 /** An example command that uses an example subsystem. */
 public class IngestCubeCommand extends InstantCommand {
-  
+private final Lidar mlidarIntake = new Lidar(0);
+
   private IntakeSubsystem mIntakeSubsystem;
     
   /**
@@ -35,6 +37,14 @@ public class IngestCubeCommand extends InstantCommand {
   // Called every time the scheduler runs while the command is scheduled.
   //@Override
   public void execute() {
-    mIntakeSubsystem.ingestCube();
+    if(mlidarIntake.getDistanceIn() > 6.0)
+    {
+      mIntakeSubsystem.ingestCube();
+    }
+    else
+    {
+      mIntakeSubsystem.stopIntakeMotor();
+    }
+    
   }
 }
